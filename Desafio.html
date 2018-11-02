@@ -1,36 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8"/>
 	<title>Desafio</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="	sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="	sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<script>
-		var d = document;
-		function processar(idTabela)
-		{
-			var newRow = d.createElement('tr');
-			newRow.insertCell(0).innerHTML = d.getElementsByName('campo')[0].value;
-			d.getElementById(idTabela).appendChild(newRow);
-			return false;
-		}
-		</script>
 	<body>
-		<div align="center">
+		<div class="container">
 		<form name="formulario" method="post" onsubmit="return processar('myTable')">  
 			<h1>
 			Insira alguma informação</h1>
-			<input type="text" name="campo" size="50">
-			<button type="submit" class="btn btn-outline-success">Successo</button> 
+			<input type="text" name="campo" id="campo" size="50">
+			<button type="submit" name="botao" id="botao" class="btn btn-outline-success">Successo</button> 
 		</form>
-		<table class="table table-striped" style="width: 35%;" >
-			<th>Input</th>
-		      <th>Output</th>
-			<tbody id="myTable"></tbody>
+		<table class="table table-striped" id="tabela">
+			<thead>
+				<tr>
+				<th>Input</th>
+		      	<th>Output</th>
+		      	</tr>
+			</thead>
+			
+			<tbody></tbody>
 		</table>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+				$("#botao").click(function(e){
+					e.preventDefault();
+
+					var getDadosDoCampo = $("#campo").val();
+
+					if (!getDadosDoCampo){
+						alert("Opa digita alguma coisa.");
+					
+					$("#campo").focus();
+					exit();
+				}
+
+				if (!/^[a-z]+$/.test(getDadosDoCampo)) {
+					alert("Caracteres não permitidos");
+					exit();
+				}
+
+				if (getDadosDoCampo.length < 2) {
+					alert("Essa string tem menos que dois caracteres. Tente novamente.");
+					exit();
+				}
+
+				$("#tabela tbody").append("<tr><td>"+getDadosDoCampo+"</td><td>Teste</td></tr>")
+					
+				})
+			})
+		</script>
 	</body>
 </html>
 
