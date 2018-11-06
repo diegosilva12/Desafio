@@ -1,64 +1,183 @@
+
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8"/>
-	<title>Desafio</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="	sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-</head>
-	<body>
-		<div class="container">
-		<form name="formulario" method="post" onsubmit="return processar('myTable')">  
-			<h1>
-			Insira alguma informação</h1>
-			<input type="text" name="campo" id="campo" size="50">
-			<button type="submit" name="botao" id="botao" class="btn btn-outline-success">Successo</button> 
-		</form>
-		<table class="table table-striped" id="tabela">
-			<thead>
-				<tr>
-				<th>Input</th>
-		      	<th>Output</th>
-		      	</tr>
-			</thead>
-			
-			<tbody></tbody>
-		</table>
-		</div>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <head>
+        <meta charset="utf-8">
 
-		<script type="text/javascript">
-			$(document).ready(function(){
+        <title>Desafio</title>
 
-				$("#botao").click(function(e){
-					e.preventDefault();
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script type="text/javascript">
 
-					var getDadosDoCampo = $("#campo").val();
+            /*var d = document;
+            function processar(idTabela)
+            {
+            var newRow = d.createElement('tr');
+            newRow.insertCell(0).innerHTML = d.getElementsByName('campo')[0].value;
+            d.getElementById(idTabela).appendChild(newRow);
+            return false;
+            }*/
+        </script>
+    </head>
+    <body>
+        <div class="container">
 
-					if (!getDadosDoCampo){
-						alert("Opa digita alguma coisa.");
-					
-					$("#campo").focus();
-					exit();
-				}
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Desafio</h1>
+                    <h6>Enunciado:</h6>
+                    <p>Dada uma string, identifique e imprima qual é a ÚNICA LETRA
+                        que aparece um número PAR de vezes.</p>
 
-				if (!/^[a-z]+$/.test(getDadosDoCampo)) {
-					alert("Caracteres não permitidos");
-					exit();
-				}
+                    <h6>Critérios:</h6>
+                    <ul>
+                        <li>O conteúdo deve ser apenas letras de a até z somente minúsculo;</li>
+                        <li>O conteúdo deve ter no mínimo 2 caracteres;</li>
+                        <li>Caso as letras estiverem em número impar, então exibir --;</li>
+                    </ul>
 
-				if (getDadosDoCampo.length < 2) {
-					alert("Essa string tem menos que dois caracteres. Tente novamente.");
-					exit();
-				}
+                    <h6>Exemplo:</h6>
+                    <table class="table table-striped table-hover table-condensed">
+                        <tbody>
+                            <tr>
+                                <td>aakkce</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>lkmpecekk</td>
+                                <td>e</td>
+                            </tr>
+                            <tr>
+                                <td>bb</td>
+                                <td>b</td>
+                            </tr>
+                            <tr>
+                                <td>ywyqb</td>
+                                <td>y</td>
+                            </tr>
+                            <tr>
+                                <td>khadiowoo</td>
+                                <td>--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-				$("#tabela tbody").append("<tr><td>"+getDadosDoCampo+"</td><td>Teste</td></tr>")
-					
-				})
-			})
-		</script>
-	</body>
+            <div class="row">
+                <div class="col-md-12">
+                    <form name="formulario" method="post" onsubmit="return processar('myTable')">  
+                        <h1>Digite qualquer caracter</h1>
+                        <input type="text" name="campo" id="campo" class="campo" size="50">
+                        <button type="submit" name="botao" id="botao" class="btn btn-outline-success">Successo</button> 
+                    </form>
+                </div>
+            </div>  
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger d-none"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped table-hover table-condensed" id="tabela" >
+                        <thead>
+                            <tr>
+                                <th>Input</th>
+                                <th>Output</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div> 
+
+        </div> 
+
+        <!-- Faz importação dos scripts -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+        <script type="text/javascript">
+            // Executa jQuery após carregamento da página
+            $(document).ready(function(){
+
+                // Executa ação quando for clicado no objeto com ID chamado botao
+                $("#botao").click( function(e){
+
+                    // Impede com que a ação padrão do botão (que é de enviar o formulário) seja executada
+                    e.preventDefault();
+
+                    // Pegamos os dados digitado pelo usuário
+                    var getDadosDoCampo = $("#campo").val();
+
+                    // Verifica se o texto do campo está vazio
+                    if( !getDadosDoCampo )
+                    {
+                        // Exibe mensagem na tela
+                        $(".alert").text( "Oops! Digite alguma coisa." ).removeClass("d-none");
+
+                        // Faz cursor do mouse ir sozinho para o campo
+                        $("#campo").focus();
+
+                        // Parar função
+                        exit();
+                    }
+
+                    // Verifica se tem apenas letras de a até z e minúsculas
+                    if( !/^[a-z]+$/.test(getDadosDoCampo) )
+                    {
+                        $(".alert").text("Caracteres não permitidos").removeClass("d-none");
+                        exit();
+                    }
+
+                    // Verifica se string tem mais que dois caracteres 
+                    if( getDadosDoCampo.length < 2 )
+                    {
+                        $(".alert").text("Oops! Essa string tem menos que dois cacarteres. Tente novamente.").removeClass("d-none");
+                        exit();                
+                    } 
+
+                    $(".alert").addClass("d-none");      
+
+                    // Variável temporária que guarda as letras que aparecem um número par de vezes
+                    var matrizOutputLetra = [];
+
+                    for( i = 0; i < getDadosDoCampo.length; i++ )
+                    {
+                        // Obtem a letra em questão conforme o tamanho da palavra
+                        var getLetra = getDadosDoCampo.substring(i,i+1);
+
+                        // Confere quantas vezes a letra aparece na palavra
+                        var tempQuantidadeDeVezesQueAparece = getDadosDoCampo.match( new RegExp(getLetra, "g") ).length;
+
+                        // Confere se a quantidade de vezes que aparece é par ou impar 
+                        if( tempQuantidadeDeVezesQueAparece % 2 === 0 )
+                        {
+                            matrizOutputLetra += getLetra; 
+                        }  
+
+                    }        
+
+                    // Confere se a letra é ÚNICA
+                    var outputLetra = ( /^(.)\1+$/.test(matrizOutputLetra) ) ? matrizOutputLetra[0] : "--";
+
+
+                    // Incrementar linha na tabela e coloca os dados obtidos digitado pelo usuário
+                    $("#tabela tbody").append("<tr><td>"+getDadosDoCampo+"</td><td>"+outputLetra+"</td></tr>");
+
+
+                })                   
+
+            })
+
+
+        </script>
+    </body>
 </html>
 
 
